@@ -75,16 +75,12 @@ export default function Navbar() {
   }
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
-    }`}>
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md py-2">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className={`font-bold text-xl flex items-center transition-colors duration-300 ${
-              scrolled ? 'text-indigo-600' : 'text-indigo-800'
-            }`}>
+            <Link href="/" className="font-bold text-xl flex items-center text-indigo-600">
               <svg 
                 className="w-8 h-8 mr-2" 
                 fill="none" 
@@ -108,9 +104,7 @@ export default function Navbar() {
           <div className="hidden md:flex md:items-center md:space-x-8">
             <Link 
               href="/" 
-              className={`text-sm font-medium transition-colors duration-300 hover:text-indigo-800 ${
-                scrolled ? 'text-gray-700' : 'text-indigo-600'
-              }`}
+              className="text-sm font-medium text-gray-700 hover:text-indigo-600" 
             >
               Home
             </Link>
@@ -119,26 +113,20 @@ export default function Navbar() {
               <>
                 <Link 
                   href="/dashboard" 
-                  className={`text-sm font-medium transition-colors duration-300 hover:text-indigo-400 ${
-                    scrolled ? 'text-gray-700' : 'text-indigo-600'
-                  }`}
+                  className="text-sm font-medium text-gray-700 hover:text-indigo-600"
                 >
                   Dashboard
                 </Link>
                 
                 <button
                   onClick={handleLogout}
-                  className={`text-sm font-medium bg-transparent border-none cursor-pointer transition-colors duration-300 hover:text-indigo-400 ${
-                    scrolled ? 'text-gray-700' : 'text-indigo-600'
-                  }`}
+                  className="text-sm font-medium bg-transparent border-none cursor-pointer text-gray-700 hover:text-indigo-600"
                 >
                   Logout
                 </button>
                 
                 <div className="ml-4">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                    scrolled ? 'bg-indigo-100 text-indigo-600' : 'bg-indigo-600 text-white'
-                  }`}>
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center bg-indigo-100 text-indigo-600">
                     {user.username?.charAt(0).toUpperCase() || user.name?.charAt(0).toUpperCase() || 'U'}
                   </div>
                 </div>
@@ -147,20 +135,14 @@ export default function Navbar() {
               <>
                 <Link 
                   href="/login" 
-                  className={`text-sm font-medium transition-colors duration-300 hover:text-indigo-400 ${
-                    scrolled ? 'text-gray-700' : 'text-indigo-600'
-                  }`}
+                  className="text-sm font-medium text-gray-700 hover:text-indigo-600"
                 >
                   Login
                 </Link>
                 
                 <Link 
                   href="/signup" 
-                  className={`text-sm font-medium px-4 py-2 rounded-md transition-all duration-300 ${
-                    scrolled 
-                      ? 'bg-indigo-600 text-white hover:bg-indigo-700' 
-                      : 'bg-white text-indigo-600 hover:bg-gray-100'
-                  }`}
+                  className="text-sm font-medium px-4 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-700"
                 >
                   Register
                 </Link>
@@ -173,11 +155,7 @@ export default function Navbar() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className={`inline-flex items-center justify-center p-2 rounded-md transition-colors duration-300 ${
-                scrolled 
-                  ? 'text-gray-700 hover:text-indigo-600 hover:bg-indigo-50' 
-                  : 'text-white hover:text-white hover:bg-indigo-600/25'
-              }`}
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
               aria-label="Toggle menu"
             >
               <svg
