@@ -84,7 +84,7 @@ export default function Quizzes() {
         </div>
         
         {/* Search Bar */}
-        <div className="relative max-w-md w-full">
+        {/* <div className="relative max-w-md w-full">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <FaSearch className="h-4 w-4 text-gray-400" />
           </div>
@@ -95,11 +95,11 @@ export default function Quizzes() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-        </div>
+        </div> */}
       </div>
 
       {/* Filters */}
-      <div className="bg-white p-4 rounded-lg shadow-sm mb-6 flex flex-wrap gap-4">
+      {/* <div className="bg-white p-4 rounded-lg shadow-sm mb-6 flex flex-wrap gap-4">
         <div className="flex items-center">
           <FaFilter className="text-gray-400 mr-2" />
           <span className="text-sm font-medium text-gray-700">Filters:</span>
@@ -138,7 +138,7 @@ export default function Quizzes() {
             </select>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Loading State */}
       {loading && (

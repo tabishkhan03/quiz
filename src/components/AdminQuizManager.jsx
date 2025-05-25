@@ -491,22 +491,26 @@ export default function AdminQuizManager() {
 
         {/* Question Form Modal */}
         {showQuestionForm && (
-          <div className="modal-overlay">
-            <div className="question-modal">
-              <div className="modal-header">
-                <h3>{activeQuestionIndex >= 0 ? 'Edit Question' : 'Add Question'}</h3>
-                <button 
-                  type="button" 
-                  onClick={() => setShowQuestionForm(false)} 
-                  className="close-btn"
-                >
-                  <FaTimes />
-                </button>
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+              <div className="p-6 border-b border-gray-200">
+                <div className="flex justify-between items-center">
+                  <h3 className="text-xl font-semibold text-gray-800">
+                    {activeQuestionIndex >= 0 ? 'Edit Question' : 'Add Question'}
+                  </h3>
+                  <button 
+                    type="button" 
+                    onClick={() => setShowQuestionForm(false)} 
+                    className="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+                  >
+                    <FaTimes />
+                  </button>
+                </div>
               </div>
               
-              <form onSubmit={saveQuestion} className="question-form">
-                <div className="form-group">
-                  <label htmlFor="questionText">Question</label>
+              <form onSubmit={saveQuestion} className="p-6 space-y-6">
+                <div>
+                  <label htmlFor="questionText" className="block text-sm font-medium text-gray-700 mb-1">Question</label>
                   <textarea
                     id="questionText"
                     name="questionText"
@@ -515,27 +519,27 @@ export default function AdminQuizManager() {
                     onChange={handleQuestionChange}
                     required
                     rows={2}
+                    className="w-full px-4 py-2 text-gray-700 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                   />
                 </div>
 
-                <div className="form-group">
-                  <label className="options-label">
-                    Options
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <label className="block text-sm font-medium text-gray-700">Options</label>
                     <button 
                       type="button" 
                       onClick={addOption} 
-                      className="add-option-btn"
+                      className="inline-flex items-center px-3 py-1.5 text-sm bg-indigo-50 text-indigo-600 rounded-lg hover:bg-indigo-100 transition-colors duration-200"
                       disabled={questionForm.options.length >= 6}
-                      title="Add Option"
                     >
-                      <FaPlus /> Add Option
+                      <FaPlus className="mr-1" /> Add Option
                     </button>
-                  </label>
+                  </div>
                   
-                  <div className="options-container">
+                  <div className="space-y-3">
                     {questionForm.options.map((option, index) => (
-                      <div key={index} className="option-item">
-                        <div className="option-input-group">
+                      <div key={index} className="flex items-center gap-3">
+                        <div className="flex-1 flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
                           <input
                             type="radio"
                             id={`correct-${index}`}
@@ -543,7 +547,7 @@ export default function AdminQuizManager() {
                             value={index}
                             checked={parseInt(questionForm.correctIndex) === index}
                             onChange={handleQuestionChange}
-                            className="correct-radio"
+                            className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
                           />
                           <input
                             type="text"
@@ -551,14 +555,14 @@ export default function AdminQuizManager() {
                             value={option}
                             onChange={(e) => handleOptionChange(index, e.target.value)}
                             required
-                            className="option-input"
+                            className="flex-1 bg-transparent border-0 focus:ring-0 p-0 text-gray-700 placeholder-gray-400"
                           />
                         </div>
                         {questionForm.options.length > 2 && (
                           <button 
                             type="button" 
                             onClick={() => removeOption(index)}
-                            className="remove-option-btn"
+                            className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200"
                           >
                             <FaTimes />
                           </button>
@@ -566,17 +570,18 @@ export default function AdminQuizManager() {
                       </div>
                     ))}
                   </div>
-                  <small className="option-help">Select the radio button next to the correct answer</small>
+                  <p className="mt-2 text-sm text-gray-500">Select the radio button next to the correct answer</p>
                 </div>
 
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor="difficulty">Difficulty</label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="difficulty" className="block text-sm font-medium text-gray-700 mb-1">Difficulty</label>
                     <select
                       id="difficulty"
                       name="difficulty"
                       value={questionForm.difficulty}
                       onChange={handleQuestionChange}
+                      className="w-full px-4 py-2 text-gray-700 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                     >
                       <option value="easy">Easy</option>
                       <option value="medium">Medium</option>
@@ -584,8 +589,8 @@ export default function AdminQuizManager() {
                     </select>
                   </div>
 
-                  <div className="form-group">
-                    <label htmlFor="tags">Tags (comma-separated)</label>
+                  <div>
+                    <label htmlFor="tags" className="block text-sm font-medium text-gray-700 mb-1">Tags (comma-separated)</label>
                     <input
                       type="text"
                       id="tags"
@@ -593,15 +598,23 @@ export default function AdminQuizManager() {
                       placeholder="math, algebra, etc."
                       value={questionForm.tags}
                       onChange={handleQuestionChange}
+                      className="w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
                 </div>
 
-                <div className="modal-actions">
-                  <button type="button" onClick={() => setShowQuestionForm(false)} className="btn btn-secondary">
+                <div className="flex justify-end space-x-3 pt-4 border-t border-gray-200">
+                  <button 
+                    type="button" 
+                    onClick={() => setShowQuestionForm(false)} 
+                    className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors duration-200"
+                  >
                     Cancel
                   </button>
-                  <button type="submit" className="btn btn-primary">
+                  <button 
+                    type="submit" 
+                    className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200"
+                  >
                     Save Question
                   </button>
                 </div>

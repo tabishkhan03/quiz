@@ -263,7 +263,7 @@ export default function QuizTaker({ quizId, onBack, onComplete }) {
                   <button
                     key={index}
                     onClick={() => handleOptionSelect(index)}
-                    className={`w-full p-4 text-left rounded-lg border transition-all duration-200 ${
+                    className={`w-full p-4 text-left text-gray-700 rounded-lg border transition-all duration-200 ${
                       selectedOption === index
                         ? 'border-indigo-500 bg-indigo-50'
                         : userAnswers[currentQuestion] === index && selectedOption !== index
